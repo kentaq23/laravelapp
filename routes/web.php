@@ -19,7 +19,10 @@ Route::get('/', function () {
 //     return '<html><body><h1>Hello</h1><p>This is sample page.</p></body></html>';
 //  });
 
- Route::get('hello', 'HelloController@index');
- Route::get('hello/other', 'HelloController@other');
+//  Route::get('hello', 'HelloController@index');
+//  Route::get('hello/other', 'HelloController@other');
 
+Route::get('hello', function() {
+    return view('hello.index');
+});
 //--------実習用----------
