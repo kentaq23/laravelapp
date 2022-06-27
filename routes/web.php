@@ -29,3 +29,7 @@ Route::get('/', function () {
 Route::get('hello', 'HelloController@index');
 Route::post('hello', 'HelloController@post');
 //--------実習用----------
+Route::get('Jissyu', 'JissyuController@index');
+
+Route::get('jissyu3', 'Jissyu3_1Controller@index');
+Route::post('jissyu3', 'Jissyu3_1Controller@post');
