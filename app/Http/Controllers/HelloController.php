@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 global $head, $style, $body, $end;
 $head = '<html><head>';
 $style = <<<EOF
@@ -23,10 +23,21 @@ function tag($tag, $txt) {
 class HelloController extends Controller
 {
   
+   
+
    public function index(Request $request)
+  {
+   if (isset($request->id))
    {
-       return view('hello.index', ['msg'=>'フォームを入力下さい。']);
+      $param = ['id' => $request->id];
+      $items = DB::select('select * from people where id = :id',
+         $param);
+   } else {
+      $items = DB::select('select * from people');
    }
+   return view('hello.index', ['items' => $items]);
+  }
+
 
    public function post(HelloRequest $request)
    {
