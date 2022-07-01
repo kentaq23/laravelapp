@@ -36,3 +36,9 @@ Route::post('jissyu3', 'Jissyu3_1Controller@post');
 
 Route::get('jissyu3_2', 'Jissyu3_2Controller@index');
 Route::post('jissyu3_2', 'Jissyu3_2Controller@post');
+
+//-----------kouka-----
+Route::get('kouka1_1', 'Kouka1_1Controller@index');
+
+Route::get('kouka1_2', 'Kouka1_2Controller@index');
+Route::post('kouka1_2', 'Kouka1_2Controller@post');
