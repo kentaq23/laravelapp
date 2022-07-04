@@ -71,4 +71,11 @@ public function update(Request $request)
    DB::update('update people set name =:name, mail = :mail, age = :age where id = :id', $param);
    return redirect('/hello');
 }
+
+public function show(Request $request)
+{
+   $id = $request->id;
+   $item = DB::table('people')->where('id', $id)->first();
+   return view('hello.show', ['item' => $item]);
+}
 }

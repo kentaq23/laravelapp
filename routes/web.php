@@ -46,3 +46,5 @@ Route::post('kouka1_2', 'Kouka1_2Controller@post');
 
 Route::get('hello/edit', 'HelloController@edit');
 Route::post('hello/edit', 'HelloController@update');
+
+Route::get('hello/show', 'HelloController@show');
