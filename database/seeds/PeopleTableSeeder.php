@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PeoleTableSeeder extends Seeder
+class PeopleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
