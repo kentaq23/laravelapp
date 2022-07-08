@@ -1,0 +1,13 @@
+ステージング
+git add .
+
+コミット
+git commit -m "コミットメッセージ"
+
+チェックアウト
+git checkout ブランチ名
+git checkout text
+
+現在のブランチを確認
+git branch --contains
+

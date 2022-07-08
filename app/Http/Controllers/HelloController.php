@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//test2
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 global $head, $style, $body, $end;
