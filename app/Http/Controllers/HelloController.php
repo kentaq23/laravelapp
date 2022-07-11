@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 //test2
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Person;
+
 global $head, $style, $body, $end;
 $head = '<html><head>';
 $style = <<<EOF
@@ -27,8 +29,15 @@ class HelloController extends Controller
 
    public function index(Request $request)
 {
-   $items = DB::table('people')->get();
-   return view('hello.index', ['items' => $items]);
+   if(isset($request->sort)){
+      $sort = $request->sort;
+   }else {
+      $sort ='age';
+   }
+   $items = Person::orderBy($sort, 'asc')
+      ->simplePaginate(5);
+   $param = ['items' => $items, 'sort' => $sort];
+   return view('hello.index', $param);
 }
 
    public function post(HelloRequest $request)
