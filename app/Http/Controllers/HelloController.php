@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 //test2
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Person;
+use Illuminate\Support\Facades\Auth;
+
+
 global $head, $style, $body, $end;
 $head = '<html><head>';
 $style = <<<EOF
@@ -27,8 +31,16 @@ class HelloController extends Controller
 
    public function index(Request $request)
 {
-   $items = DB::table('people')->get();
-   return view('hello.index', ['items' => $items]);
+   $user = Auth::user();
+   if(isset($request->sort)){
+      $sort = $request->sort;
+   }else {
+      $sort ='age';
+   }
+   $items = Person::orderBy($sort, 'asc')
+       ->simplePaginate(5);
+   $param = ['items' => $items, 'sort' => $sort, 'user' => $user];
+   return view('hello.index', $param);
 }
 
    public function post(HelloRequest $request)
@@ -80,5 +92,42 @@ public function show(Request $request)
        ->limit(3)
        ->get();
    return view('hello.show', ['items' => $items]);
+}
+
+public function rest(Request $request)
+{
+   return view('hello.rest');
+}
+
+public function ses_get(Request $request)
+{
+   $sesdata = $request->session()->get('msg');
+   return view('hello.session', ['session_data' => $sesdata]);
+}
+
+public function ses_put(Request $request)
+{
+   $msg = $request->input;
+   $request->session()->put('msg', $msg);
+   return redirect('hello/session');
+}
+
+public function getAuth(Request $request)
+{
+   $param = ['message' => 'ログインして下さい。'];
+   return view('hello.auth', $param);
+}
+
+public function postAuth(Request $request)
+{
+   $email = $request->email;
+   $password = $request->password;
+   if (Auth::attempt(['email' => $email,
+           'password' => $password])) {
+       $msg = 'ログインしました。（' . Auth::user()->name . '）';
+   } else {
+       $msg = 'ログインに失敗しました。';
+   }
+   return view('hello.auth', ['message' => $msg]);
 }
 }
