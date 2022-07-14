@@ -85,3 +85,13 @@ Route::get('hello', 'HelloController@index')
 
 Route::get('hello/auth', 'HelloController@getAuth');
 Route::post('hello/auth', 'HelloController@postAuth');
+
+Route::get('jissyu14', 'Jissyu6_3Controller@index');
+Route::post('jissyu14/find', 'Jissyu6_3Controller@find');
+Route::get('jissyu14/show', 'Jissyu6_3Controller@show');
+Route::get('jissyu14/add', 'Jissyu6_3Controller@add');
+Route::post('jissyu14/create', 'Jissyu6_3Controller@create');
+Route::get('jissyu14/edit', 'Jissyu6_3Controller@edit');
+Route::post('jissyu14/update', 'Jissyu6_3Controller@update');
+Route::get('jissyu14/del', 'Jissyu6_3Controller@del');
+Route::post('jissyu14/remove', 'Jissyu6_3Controller@remove');
